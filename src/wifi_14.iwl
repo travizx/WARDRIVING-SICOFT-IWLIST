@@ -1,0 +1,22 @@
+e12e12e 21e2e12e $GNGGA,193352.00,1858.14509,N,09815.96287,W,1,12,0.62,2114.3,M,-7.9,M,,*74
+          Cell 01 - Address: 94:10:3E:C6:9D:2D
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=37/70  Signal level=-73 dBm  
+                    ESSID:"dlink"
+                    Extra: Last beacon: 1080ms ago
+          Cell 02 - Address: 28:92:4A:15:67:E8
+                    Frequency:2.432 GHz (Channel 5)
+                    Quality=31/70  Signal level=-79 dBm  
+                    ESSID:"CCO MARGARITAS L2"
+                    Extra: Last beacon: 852ms ago
+2015-10-27 13:30:00 $GNGGA,193402.00,1858.14506,N,09815.96280,W,1,12,0.62,2114.2,M,-7.9,M,,*7F
+          Cell 01 - Address: 94:10:3E:C6:9D:2D
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=37/70  Signal level=-73 dBm  
+                    ESSID:"dlink"	
+                    Extra: Last beacon: 10196ms ago
+          Cell 02 - Address: 28:92:4A:15:67:E8
+                    Frequency:2.432 GHz (Channel 5)
+                    Quality=31/70  Signal level=-79 dBm  
+                    ESSID:"CCO MARGARITAS L2"
+                    Extra: Last beacon: 9968ms ago

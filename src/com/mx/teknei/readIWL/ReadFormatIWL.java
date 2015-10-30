@@ -1,6 +1,8 @@
 package com.mx.teknei.readIWL;
 
+import com.mx.teknei.DTO.GNGGADTO;
 import com.mx.teknei.DTO.RecvAccessPointDTO;
+import com.mx.teknei.gps.InterpreteTramaGPS;
 import com.mx.teknei.util.DateUtil;
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,7 +41,7 @@ public class ReadFormatIWL {
                         dentro de esa Linea si no que la ignore.
                         */
                         if(linea.contains("$GNGGA")){
-                            obtenerDatosCadena_GNGGA(linea);
+                           obtenerDatosCadena_GNGGA(linea);
                         }else{
                             
                         }
@@ -79,16 +81,18 @@ public class ReadFormatIWL {
      */
     protected static Date obtenerDatosCadena_GNGGA(String linea){
         Date dateReturn = null;
+        GNGGADTO trama = null;
         if( linea.contains("GNGGA") ){
             String []fechaSeparada = linea.split(" ");
             if(fechaSeparada.length == 3){
                 dateReturn = new DateUtil().convertStringToDate2(fechaSeparada[0],fechaSeparada[1]);
-                
+                trama = new InterpreteTramaGPS().intepreteGNGGA(fechaSeparada[2]);
             }else{
                 return null;
             }
         }
         return dateReturn;
     }
+    
 
 }

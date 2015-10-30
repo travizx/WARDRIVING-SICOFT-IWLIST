@@ -8,7 +8,7 @@ import java.util.Date;
  * @date 28/10/2015
  * @class GNGGA_DTO
  */
-public class GNGGA_DTO {
+public class GNGGADTO {
 
     private Date UTCtime;
     private double latitude;
@@ -19,12 +19,12 @@ public class GNGGA_DTO {
     private int numSatellites;
     private double altitude;
 
-    public GNGGA_DTO(double latitude, double longitude) {
+    public GNGGADTO(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
     
-    public GNGGA_DTO(Date UTCtime, double latitude, boolean isNorth, double longitude, boolean isEast) {
+    public GNGGADTO(Date UTCtime, double latitude, boolean isNorth, double longitude, boolean isEast) {
         this.UTCtime = UTCtime;
         this.latitude = latitude;
         this.isNorth = isNorth;
@@ -32,7 +32,7 @@ public class GNGGA_DTO {
         this.isEast = isEast;
     }
 
-    public GNGGA_DTO(Date UTCtime, double latitude, boolean isNorth, double longitude, boolean isEast, int qualityGPS, int numSatellites, double altitude) {
+    public GNGGADTO(Date UTCtime, double latitude, boolean isNorth, double longitude, boolean isEast, int qualityGPS, int numSatellites, double altitude) {
         this.UTCtime = UTCtime;
         this.latitude = latitude;
         this.isNorth = isNorth;

@@ -1,6 +1,9 @@
 package com.mx.teknei.util;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * @author HEYDRICH ABRAHAM ENCISO - [haenciso@teknei.com.mx]
@@ -96,10 +99,60 @@ public class DateUtil {
         Date diaCalculado = null;
         if (fecha != null || !fecha.equals(" ") && hora != null || !hora.equals(" ")) {
             String[] fechaDiv = fecha.split("-");
-            String[] horaDiv = fecha.split(":");
-            Date fechaOBT = new Date();
+            String[] horaDiv = hora.split(":");
+            //Convertimos y comprobamos la Fecha 
+            //Var que se reutilizaran
+            ArrayList<Integer> fechasConvertInt=new ArrayList();
+            //-----------------------
+            if (fechaDiv.length == 3){ //Comprueba que tenga 3 String
+                for (String fchDiv : fechaDiv) {
+                    if(!fchDiv.equals("") || !fchDiv.equals(" ")){
+                        try {
+                           fechasConvertInt.add(Integer.parseInt(fchDiv));
+                        } catch (NumberFormatException e) {
+                            return null;
+                        }
+                    }else{
+                        return null;
+                    }
+                }
+            }else{
+                return null;
+            }
+            //System.out.println("TAMAÑO:"+fechasConvertInt.size());
+            //Convertimos y comprobamos la hora
+            //Var que se reutilizaran
+            ArrayList<Integer> horasConvertInt = new ArrayList<>();
+            //-----------------------
+            if(horaDiv.length == 3){//La hora tambien tiene 3 valores
+                for (String hrsDiv : horaDiv) {
+                    if (!hrsDiv.equals("") || !hrsDiv.equals(" ")) {
+                        try {
+                            horasConvertInt.add(Integer.parseInt(hrsDiv));
+                        } catch (NumberFormatException nfe) {
+                            return null;
+                        }
+                    } else {
+                        return null;
+                    }
+                }
+            }else{
+                return null;
+            }
+            //System.out.println("TAMAÑO HRS:"+horasConvertInt.size() );
+            //Crear el objeto DAte con los datos que se tiene en el
+            if(fechasConvertInt.size() == 3 && horasConvertInt.size() == 3){
+                GregorianCalendar tmpDate = 
+                        new GregorianCalendar(fechasConvertInt.get(0),
+                        fechasConvertInt.get(1)-1, fechasConvertInt.get(2),
+                        horasConvertInt.get(0),horasConvertInt.get(1),
+                        horasConvertInt.get(2));
+                diaCalculado = tmpDate.getTime();
+            }else{
+                return null;
+            }
         } else {
-            return diaCalculado;
+            return null;
         }
         return diaCalculado;
     }

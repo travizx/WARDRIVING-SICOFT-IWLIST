@@ -1,8 +1,7 @@
 package com.mx.teknei.readIWL;
 
-import com.mx.teknei.util.DateUtil;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import com.mx.teknei.gps.InterpreteTramaGPS;
+import com.mx.teknei.util.StringUtil;
 
 /**
  * @author HEYDRICH ABRAHAM ENCISO - [haenciso@teknei.com.mx]
@@ -12,7 +11,13 @@ import java.util.GregorianCalendar;
 public class nuevoMain {
 
     public static void main(String[] args) {
-        Date obtenido = new DateUtil().convertStringToDate2("2015-10-27", "13:33:00");
-        System.out.println(obtenido);
+//        GNGGADTO dtoGPS = new InterpreteTramaGPS().intepreteGNGGA("$GNGGA,193402.00,1858.14506,N,09815.96280,W,1,12,0.62,2114.2,M,-7.9,M,,*7F");
+//        if(dtoGPS != null){
+//            System.out.println("GNGGADTO lleno");
+//        }else{
+//            System.out.println("GNGGADTO vacio");
+//        }
+        
+
     }
 }

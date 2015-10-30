@@ -6,6 +6,10 @@
 package com.mx.teknei.gps;
 
 import com.mx.teknei.DTO.GNGGADTO;
+import com.mx.teknei.util.StringUtil;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -14,65 +18,69 @@ import com.mx.teknei.DTO.GNGGADTO;
  * @author HEYDRICH ABRAHAM ENCISO - [haenciso@teknei.com.mx]
  */
 public class InterpreteTramaGPS {
-    
-    
 
-    
     public InterpreteTramaGPS() {
-        
+
     }
-    
+
     /**
-     * Función que recibe un string que es la trama que se optiene de GPS, esta trama 
-     * son para las que contienen el Formato GNGGA
+     * Función que recibe un string que es la trama que se optiene de GPS, esta
+     * trama son para las que contienen el Formato GNGGA
+     *
      * @param trama
-     * @return 
+     * @return
      */
-    public GNGGADTO intepreteGNGGA(String trama){
+    public GNGGADTO intepreteGNGGA(String trama) {
+        GNGGADTO tramaDTO = null;
         if (trama.contains("$GNGGA")) {
             System.out.println(trama);
-            String[] tramaGPSonly = trama.split(",");
-            //--------OBTENER PUNTOS GPS TRAMA---------
-            System.out.println("----TRAMA GPS:");
-            String latitud = tramaGPSonly[2].length() == 0 ? "0" : tramaGPSonly[2];
-            boolean norte = tramaGPSonly[3].equals("N");
-            String longitud = tramaGPSonly[4].length() == 0 ? "0" : tramaGPSonly[4];
-            boolean este = tramaGPSonly[5].equals("E");
-            //-------------VARS------------------------
-            String gradosLatitud = "0";
-            String minutosLatitud = "0";
-            String gradosLongitud = "0";
-            String minutosLongitud = "0";
-            Double latitudDecimal = 0d;
-            Double longitudDecimal = 0d;
-            //--------Convertir TRAMA-------------------
-            if (!latitud.equals("0")) {
-                gradosLatitud = latitud.substring(0, 2);
-                minutosLatitud = latitud.substring(2);
-            }
-            if (!longitud.equals("0")) {
-                gradosLongitud = longitud.substring(0, 3);
-                minutosLongitud = longitud.substring(3);
-            }
-            latitudDecimal = Double.parseDouble(gradosLatitud) + (Double.parseDouble(minutosLatitud) / 60);
-            longitudDecimal = Double.parseDouble(gradosLongitud) + (Double.parseDouble(minutosLongitud) / 60);
+            String[] tramaGPS = trama.split(",");
+            if (tramaGPS.length == 15) {//Comprueba que contenga los 15 parametros que tiene el formato GNGGA
+                //----FECHA GPS
 
-            latitudDecimal = norte ? latitudDecimal : latitudDecimal * -1;
-            longitudDecimal = este ? longitudDecimal : longitudDecimal * -1;
-            //----------FIN CALCULO GEOLOCALIZACION---------------
-            System.out.println("LAT:");
-            System.out.println(gradosLatitud);
-            System.out.println(minutosLatitud);
-            System.out.println("LONG:");
-            System.out.println(gradosLongitud);
-            System.out.println(minutosLongitud);
-            System.out.println("Latitud: " + latitudDecimal + " Longitud: " + longitudDecimal);
-
+            } else {
+                System.err.println("La trama obtenida no tiene el formato adecuado."
+                        + ":Class." + this.getClass().getSimpleName() + "(intepreteGNGGA)");
+            }
         } else {
-            System.out.println("\\o/ NOOO LO TIENEN \\o/");
+            System.err.println("La trama obtenida como parametro no contiene '$GNGGA'"
+                    + ":Class." + this.getClass().getSimpleName() + "(intepreteGNGGA)");
         }
-        return null;
+
+        return tramaDTO;
     }
-    
-   
+
+    private Date getUTCtime(String time) {
+        Date horaOnlyGPS = null;
+        if ( isCheckStringCorrect(time) ) {
+            
+        } else {
+            return null;
+        }
+        return horaOnlyGPS;
+    }
+
+    private Double getLatitude(String latitude) {
+        Double latitudeGPS = null;
+        if ( isCheckStringCorrect(latitude) ) {
+            
+        } else {
+            return null;
+        }
+        return latitudeGPS;
+    }
+
+    /**
+     * Funcion que comprueba que una cadena no sea NULL y que contenga
+     * 'CARACTERES' o 'NUMEROS' y que al principio no tenga 'ESPACIOS'.
+     *
+     * @param cadena Cadena que se comprobara.
+     * @return Retorna TRUE si y solo si ... NO es null. NO tiene espacios
+     * vacios al pricipio. SI contiene algo escrito con caracteres o número,
+     */
+    public boolean isCheckStringCorrect(String cadena) {
+        return cadena != null && StringUtil.containsCharacter(cadena)
+                && !StringUtil.containSpaceFirst(cadena);
+    }
+
 }
